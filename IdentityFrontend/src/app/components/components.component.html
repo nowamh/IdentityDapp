@@ -1,0 +1,41 @@
+<div class="wrapper">
+    <div class="page-header clear-filter" filter-color="orange">
+        <div class="page-header-image rellax-header" data-rellax-speed="-7"
+            style="background-image: url('assets/img/header.jpg');">
+
+        </div>
+        <div class="container">
+            <div class="content-center brand">
+                <h1 class="h1-seo">Identity Dapp</h1>
+                <div class="row justify-content-md-center">
+
+                <div class="text-center col-md-12 col-lg-8">
+                    <a [routerLink]="['/identity/identity-profile']" target="_blank"
+                        class="btn btn-primary btn-lg btn-round" role="button">
+                        Check Identity 
+                    </a>
+                    <a [routerLink]="['/identity/new-identity']" target="_blank"
+                        class="btn btn-primary btn-lg btn-simple btn-round" role="button">
+                                           Add new Identity
+
+                    </a>
+
+                </div>
+                </div>
+            </div>
+
+
+        </div>
+
+     
+        <footer class="footer" data-background-color="black">
+            <div class="container">
+
+                <div class="copyright">
+                    &copy;
+                    {{data | date: 'yyyy'}}, IdentityDapp
+
+                </div>
+            </div>
+        </footer>
+    </div>
