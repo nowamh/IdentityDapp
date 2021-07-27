@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
-const Web3 = require('web3');
+import * as Web3 from 'web3';
+
+declare let require: any;
+declare let window: any;
+
+let tokenAbi = require('../../../build/contracts/Identity.json');
+
 @Injectable({
   providedIn: 'root'
 })
 export class IdentityService {
-
-  constructor() { }
+  private web3Provider: null;
+  private contracts: {};
+  constructor() {
+   
+  }
 }
