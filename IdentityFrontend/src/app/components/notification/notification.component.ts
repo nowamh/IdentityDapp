@@ -12,7 +12,8 @@ export class NotificationComponent {
     private backup: Array<IAlert>;
 
     constructor() {
-        this.alerts.push({
+        this.alerts.push(
+          /*  {
             id: 1,
             type: 'success',
             strong: 'Well done!',
@@ -30,7 +31,7 @@ export class NotificationComponent {
             strong: 'Warning!',
             message: 'This is a warning alert',
             icon: 'ui-1_bell-53'
-        }, {
+        }, */{
             id: 4,
             type: 'danger',
             strong: 'Oh snap!',
