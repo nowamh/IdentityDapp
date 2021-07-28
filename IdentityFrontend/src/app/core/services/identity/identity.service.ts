@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { FormControl } from '@angular/forms';
-const Web3 = require('web3');
+//import { FormControl } from '@angular/forms';
+//const Web3 = require('web3');
 
 declare let require: any;
 declare let window: any;
 
-let tokenAbi = require('../../../../../../IdentityTruffle/build/contracts/Identities.json');
+//let tokenAbi = require('../../../../../../IdentityTruffle/build/contracts/Identities.json');
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class IdentityService {
   private web3Provider: null;
   private contracts: {};
   constructor() {
-    if (window.ethereum === undefined) {
+  /*  if (window.ethereum === undefined) {
       alert('Non-Ethereum browser detected. Install MetaMask');
     } else {
       if (typeof window.web3 !== 'undefined') {
@@ -30,16 +30,17 @@ export class IdentityService {
       console.log('transfer.service :: constructor :: this.web3');
       console.log(this.web3);
       this.enable = this.enableMetaMaskAccount();
-    }
+    }*/
    
   }  
-  private async enableMetaMaskAccount(): Promise<any> {
+
+  /*private async enableMetaMaskAccount(): Promise<any> {
     let enable = false;
     await new Promise((resolve, reject) => {
       enable = window.ethereum.enable();
     });
     return Promise.resolve(enable);
-  }
+  }*/
   checkIdExistance() : boolean {
     throw new Error('Method not implemented.');
   }

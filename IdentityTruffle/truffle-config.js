@@ -51,7 +51,7 @@ module.exports = {
       host: "localhost",
       port:8545,
       network_id: 4,       // rinkeby's id
-      gas: 4700000,        
+      gas: 4700000
      },
  
     // Useful for deploying to a public network.
