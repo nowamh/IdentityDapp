@@ -31,7 +31,9 @@
             ],
             "scripts": [
               "node_modules/rellax/rellax.min.js"
-            ]
+            ], 
+            "extraWebpackConfig": "webpack.config.js" 
+
           },
           "configurations": {
             "production": {
@@ -52,11 +54,14 @@
               ]
             }
           }
+
         },
         "serve": {
           "builder": "ngx-build-plus:dev-server",
           "options": {
-            "browserTarget": "now-ui-kit-angular:build"
+            "browserTarget": "now-ui-kit-angular:build", 
+            "extraWebpackConfig": "webpack.config.js" 
+
           },
           "configurations": {
             "production": {

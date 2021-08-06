@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { IdentityService } from 'app/core/services/identity/identity.service';
+import { IdentityService } from 'app/services/identity/identity.service';
+import { Web3Service } from 'app/services/web3/web3.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-new-identity',
@@ -14,35 +16,20 @@ export class NewIdentityComponent implements OnInit {
   private lastname: FormControl;
   private nickname: FormControl;
   private avatar: FormControl;
-  error: boolean;
+  fileBlob: File;
+  fileContent: ArrayBuffer;
 
+  error: boolean;
+  accounts: string[];
   data: Date = new Date();
   focus;
   focus1;
-
-  constructor(private identityService: IdentityService) {
+  address: string
+  ammount: any
+  constructor(private identityService: IdentityService, private web3Service: Web3Service) {
+    // call createForm
     this.createFormControls();
     this.createForm();
-  }
-
-  ngOnInit() {
-    this.error= false
-    var body = document.getElementsByTagName('body')[0];
-    body.classList.add('login-page');
-
-    var navbar = document.getElementsByTagName('nav')[0];
-    navbar.classList.add('navbar-transparent');
-  }
-
-  /**
-  * createFormControls
-  */
-  createFormControls() {
-    this.firstname = new FormControl('', Validators.required),
-      this.lastname = new FormControl('', Validators.required);
-    this.nickname = new FormControl('', Validators.required);
-    this.avatar = new FormControl('', Validators.required);
-
   }
 
   /**
@@ -53,9 +40,31 @@ export class NewIdentityComponent implements OnInit {
       firstname: this.firstname,
       lastname: this.lastname,
       nickname: this.nickname,
-      avatar: this.avatar,
+      avatar: this.avatar
     });
   }
+  ngOnInit() {
+   
+    this.error = false
+    var body = document.getElementsByTagName('body')[0];
+    body.classList.add('login-page');
+
+    var navbar = document.getElementsByTagName('nav')[0];
+    navbar.classList.add('navbar-transparent');
+  }
+
+
+  /**
+  * createFormControls
+  */
+  createFormControls() {
+    this.firstname = new FormControl(''),
+    this.lastname = new FormControl('');
+    this.nickname = new FormControl('');
+    this.avatar = new FormControl('');
+
+  }
+
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
     body.classList.remove('login-page');
@@ -63,12 +72,21 @@ export class NewIdentityComponent implements OnInit {
     var navbar = document.getElementsByTagName('nav')[0];
     navbar.classList.remove('navbar-transparent');
   }
-  OnSubmit(){
-     if (this.identityService.checkIdExistance()== true)
+  // this function is called when submit registration
+
+  onSubmit() {
+    /* if (this.identityService.checkIdExistance()== true)
      this.error  =true ;
-     else
-     this.identityService.addNewId(this.firstname.value,this.lastname.value,this.nickname.value, this.avatar.value )
-     
+     else*/
+    // call contract addNewID with required parameters
+    console.log("call contract addNewID with required parameters")
+    console.log("first name",this.firstname.value)
+    this.identityService.addNewId(this.firstname.value, this.lastname.value, this.nickname.value, this.avatar.value).subscribe(res => {
+     console.log(res)
+      // reset the form
+      this.identityForm.reset();
+    });
+
   }
 
 }

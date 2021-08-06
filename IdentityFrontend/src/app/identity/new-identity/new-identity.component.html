@@ -4,35 +4,40 @@
     <div class="container">
         <div class="col-md-4 content-center">
             <div class="card card-login card-plain">
-                <form class="form" name="identityForm" [formGroup]="identityForm"  method="" action="">
+                <form class="form" name="identityForm" [formGroup]="identityForm" (ngSubmit)="onSubmit()">
                     <div class="header header-primary text-center">
                         <div class="logo-container">
                         </div>
                     </div>
                     <div class="content">
-                      <div class="input-group form-group-no-border input-lg" formControlName="firstname" id="firstname" [ngClass]="{'input-group-focus':focus===true}">
+                      <div class="input-group form-group-no-border input-lg"  id="firstname" [ngClass]="{'input-group-focus':focus===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
                         </div>
-                          <input type="text" class="form-control" placeholder="First Name..." (focus)="focus=true" (blur)="focus=false" >
+                          <input type="text"
+                          formControlName="firstname"
+                           class="form-control" 
+                           placeholder="First Name..." 
+                           (focus)="focus=true" 
+                           (blur)="focus=false" >
                       </div>
-                      <div class="input-group form-group-no-border input-lg" formControlName="lastname" id="lastname"[ngClass]="{'input-group-focus':focus1===true}">
+                      <div class="input-group form-group-no-border input-lg" id="lastname"[ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
                         </div>
-                          <input type="text" placeholder="Last Name..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
+                          <input formControlName="lastname"  type="text" placeholder="Last Name..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
                       </div>
-                      <div class="input-group form-group-no-border input-lg" formControlName="nickname" id="nickname"[ngClass]="{'input-group-focus':focus1===true}">
+                      <div class="input-group form-group-no-border input-lg"  id="nickname"[ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
                         </div>
-                          <input type="text" placeholder="Nick Name..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
+                          <input type="text" formControlName="nickname" placeholder="Nick Name..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
                       </div>
-                      <div class="input-group form-group-no-border input-lg" formControlName="avatar" id="avatar"[ngClass]="{'input-group-focus':focus1===true}">
+                      <div class="input-group form-group-no-border input-lg"  id="avatar"[ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="now-ui-icons design_image"></i></span>
                         </div>
-                          <input type="text" placeholder="Avatar..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
+                          <input formControlName="avatar" type="file" placeholder="Avatar..." class="form-control" (focus)="focus1=true" (blur)="focus1=false"/>
                       </div>
                     </div>
 
@@ -56,7 +61,7 @@
                         </div>
                     </ngb-alert>-->
                     <div class="footer text-center">
-                        <a type="submit" (click)="OnSubmit()" class="btn btn-primary btn-round btn-lg btn-block">Registrate for Identity</a>
+                        <button type="submit"   class="btn btn-primary btn-round btn-lg btn-block">Registrate for Identity</button>
                     </div>
                     <div class="pull-left">
                         <h6>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IdentityService, Web3Service } from 'app/services/services';
 import * as Rellax from 'rellax';
 
 @Component({
@@ -16,9 +17,14 @@ export class IdentityProfileComponent implements OnInit {
     focus;
     focus1;
 
-    constructor() { }
+    constructor(private identityService: IdentityService, private web3Service: Web3Service) {
+      
+     }
 
     ngOnInit() {
+      this.identityService.getId().subscribe(res=>{
+        console.log(res)
+      })
       var rellaxHeader = new Rellax('.rellax-header');
 
         var body = document.getElementsByTagName('body')[0];
@@ -34,3 +40,5 @@ export class IdentityProfileComponent implements OnInit {
     }
 
 }
+
+

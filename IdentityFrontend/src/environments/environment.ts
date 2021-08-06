@@ -4,5 +4,8 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  HttpProvider:'https://rinkeby.infura.io/v3/4d96d3fcb7b6460680eee029c80212b2'
+ // 'http://localhost:8545' ==>ganache 
+
 };
