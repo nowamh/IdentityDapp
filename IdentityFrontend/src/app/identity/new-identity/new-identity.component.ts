@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IdentityService } from 'app/services/identity/identity.service';
 import { Web3Service } from 'app/services/web3/web3.service';
-import { Observable } from 'rxjs';
-
+import { read } from 'fs';
+import { buffer } from 'rxjs-compat/operator/buffer';
+import ipfs from '../../services/ipfs /ipfs.service'
 @Component({
   selector: 'app-new-identity',
   templateUrl: './new-identity.component.html',
   styleUrls: ['./new-identity.component.css']
 })
+
 export class NewIdentityComponent implements OnInit {
   // form 
   identityForm: FormGroup;
@@ -16,9 +18,9 @@ export class NewIdentityComponent implements OnInit {
   private lastname: FormControl;
   private nickname: FormControl;
   private avatar: FormControl;
-  fileBlob: File;
+    filebuffer: any ;
   fileContent: ArrayBuffer;
-
+  fileToUpload: any 
   error: boolean;
   accounts: string[];
   data: Date = new Date();
@@ -26,6 +28,7 @@ export class NewIdentityComponent implements OnInit {
   focus1;
   address: string
   ammount: any
+
   constructor(private identityService: IdentityService, private web3Service: Web3Service) {
     // call createForm
     this.createFormControls();
@@ -64,6 +67,14 @@ export class NewIdentityComponent implements OnInit {
     this.avatar = new FormControl('');
 
   }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    const reader= new window.FileReader()
+    reader.onload = (e) => {
+    let buffer =  reader.readAsArrayBuffer(this.fileToUpload)
+    this.filebuffer=buffer
+    }
+    }
 
   ngOnDestroy() {
     var body = document.getElementsByTagName('body')[0];
@@ -79,13 +90,20 @@ export class NewIdentityComponent implements OnInit {
      this.error  =true ;
      else*/
     // call contract addNewID with required parameters
-    console.log("call contract addNewID with required parameters")
-    console.log("first name",this.firstname.value)
-    this.identityService.addNewId(this.firstname.value, this.lastname.value, this.nickname.value, this.avatar.value).subscribe(res => {
-     console.log(res)
-      // reset the form
-      this.identityForm.reset();
-    });
+
+    ipfs.files.add(this.filebuffer, function (err, result) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(result[0].hash)
+        this.identityService.addNewId(this.firstname.value, this.lastname.value, this.nickname.value, this.avatar.value).subscribe(res => {
+          console.log(res)
+           // reset the form
+           this.identityForm.reset();
+         });
+      }
+    })
+
 
   }
 
