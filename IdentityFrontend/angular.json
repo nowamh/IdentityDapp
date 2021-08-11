@@ -33,6 +33,7 @@
               "node_modules/rellax/rellax.min.js"
             ], 
             "extraWebpackConfig": "webpack.config.js" 
+         
 
           },
           "configurations": {
