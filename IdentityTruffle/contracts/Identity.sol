@@ -78,12 +78,12 @@ contract Identities {
         
     }
    
-     function getIdentity(address id_add)  public view onlyIfIdExists(id_add)  returns ( string memory _firstname, string memory _lastname, string memory _nickname, string memory _ipfsAvatarHash, uint _index ){
-        _firstname = identities[ id_add].firstname ;
-        _lastname = identities[ id_add].lastname;
-        _nickname =   identities[ id_add].nickname;
-        _ipfsAvatarHash =   identities[ id_add].ipfsAvatarHash ;
-        _index=identities[id_add].index;
+     function getIdentity(address id_add)  public view onlyIfIdExists(id_add)  returns ( string memory firstname, string memory lastname, string memory nickname, string memory ipfsAvatarHash, uint index ){
+        firstname = identities[ id_add].firstname ;
+        lastname = identities[ id_add].lastname;
+        nickname =   identities[ id_add].nickname;
+        ipfsAvatarHash =   identities[ id_add].ipfsAvatarHash ;
+        index=identities[id_add].index;
 
     }
     
@@ -119,9 +119,9 @@ contract Identities {
 
     }
     
-    function getSocialLinkByName(address id_add ,string  memory _name) public view socialLinkExist(id_add, _name) returns (string memory, string memory) {
-        
-       return( identities[ id_add].socialLinks[_name].name, identities[id_add].socialLinks[_name].url);
+    function getSocialLinkByName(address id_add ,string  memory _name) public view socialLinkExist(id_add, _name) returns (string memory name, string memory url) {
+        name= identities[ id_add].socialLinks[_name].name;
+        url=identities[id_add].socialLinks[_name].url;
        
     }
         

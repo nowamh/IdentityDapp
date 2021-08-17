@@ -1,21 +1,13 @@
+import { SocilaMedia } from "./socialMedia"
+
 export class Identity {
     firstname: string
     lastname: string
-    nickName:string
+    nickname:string
     avatarHash:string
      index:Int16Array
+    facebook: any
+    twitter:any 
+    instagram: any
 
-
-    constructor(    firstname: string,
-        lastname: string,
-        nickName:string,
-        avatarHash:string,
-        index:Int16Array
-        ) {
-      this.firstname = firstname;
-      this.lastname = lastname;
-      this.nickName = nickName;
-      this.avatarHash = avatarHash;
-      this.index=index
-    }
 }

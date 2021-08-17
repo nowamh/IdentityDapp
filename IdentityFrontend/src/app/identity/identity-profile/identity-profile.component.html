@@ -7,8 +7,8 @@
                 <div class="photo-container">
                     <img src="assets/img/ryan.jpg" alt="">
                 </div>
-                <h3 class="title">Ryan Scheinder</h3>
-                <p class="category">Photographer</p>
+               <h3 class="title">{{ this.identity.firstname}} {{ this.identity.lastname}}</h3>
+                <p class="category"> {{this.identity.nickname}} </p>
         
             </div>
         </div>
@@ -16,13 +16,13 @@
     <div class="section">
         <div class="container">
           <div class="button-container">
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
+              <a *ngIf="this.identity.twitter" href="{{this.identity.twitter.url}}" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="{{this.identity.twitter.url}}">
                 <i class="fab fa-twitter"></i>
               </a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Like us on Facebook">
+              <a *ngIf="this.identity.facebook" href="{{this.identity.facebook.url}}" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="{{this.identity.facebook.url}}">
                 <i class="fab fa-facebook"></i>
               </a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Instagram">
+              <a *ngIf="this.identity.instagram" href="{{this.identity.instagram.url}}" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="{{this.identity.instagram.url}}">
                 <i class="fab fa-instagram"></i>
               </a>
           </div>

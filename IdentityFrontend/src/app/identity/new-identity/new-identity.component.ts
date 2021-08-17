@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IdentityService } from 'app/services/identity/identity.service';
 import { Web3Service } from 'app/services/web3/web3.service';
 import { Observable } from 'rxjs';
@@ -16,6 +17,9 @@ export class NewIdentityComponent implements OnInit {
   private lastname: FormControl;
   private nickname: FormControl;
   private avatar: FormControl;
+  private facebook: FormControl;
+  private instagram: FormControl;
+  private twitter :FormControl;
   fileBlob: File;
   fileContent: ArrayBuffer;
 
@@ -26,7 +30,7 @@ export class NewIdentityComponent implements OnInit {
   focus1;
   address: string
   ammount: any
-  constructor(private identityService: IdentityService, private web3Service: Web3Service) {
+  constructor(private identityService: IdentityService, private web3Service: Web3Service, private router: Router) {
     // call createForm
     this.createFormControls();
     this.createForm();
@@ -40,7 +44,13 @@ export class NewIdentityComponent implements OnInit {
       firstname: this.firstname,
       lastname: this.lastname,
       nickname: this.nickname,
-      avatar: this.avatar
+      avatar: this.avatar,
+      facebook: this.facebook,
+      twitter: this.twitter,
+      instagram: this.instagram
+
+
+
     });
   }
   ngOnInit() {
@@ -62,6 +72,9 @@ export class NewIdentityComponent implements OnInit {
     this.lastname = new FormControl('');
     this.nickname = new FormControl('');
     this.avatar = new FormControl('');
+    this.instagram = new FormControl('');
+    this.facebook = new FormControl('');
+    this.twitter = new FormControl('');
 
   }
 
@@ -84,6 +97,15 @@ export class NewIdentityComponent implements OnInit {
     this.identityService.addNewId(this.firstname.value, this.lastname.value, this.nickname.value, this.avatar.value).subscribe(res => {
      console.log(res)
       // reset the form
+      this.router.navigate(['/identity/socialMedia']);
+
+     // this.identityService.addSocialLink(this.facebook.value, "facebook").subscribe (res => {
+       // console.log("facebook ",res)})
+      //this.identityService.addSocialLink(this.instagram.value, "instagram").subscribe (res => {
+       // console.log("instagram ",res)})
+     // this.identityService.addSocialLink(this.twitter.value, "twitter").subscribe (res => {
+      //  console.log("twitter ",res)})
+
       this.identityForm.reset();
     });
 
